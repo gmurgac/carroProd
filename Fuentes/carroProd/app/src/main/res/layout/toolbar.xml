@@ -19,6 +19,7 @@
             android:layout_width="@dimen/ancho_imagen_toolbar"
             android:layout_height="@dimen/ancho_imagen_toolbar"></ImageView>
         <TextView
+            android:id="@+id/titulo_toolbar_txt"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
