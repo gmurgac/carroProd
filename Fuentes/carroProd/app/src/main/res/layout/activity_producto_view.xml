@@ -8,14 +8,52 @@
     android:orientation="vertical"
     >
     <include layout="@layout/toolbar"></include>
-
-    <TextView
-        android:id="@+id/nombre_prod_view_txt"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Holamundo"
-        android:textSize="40dp"
-        android:gravity="center"
-        ></TextView>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nombre_prod_view_txt"
+            android:layout_margin="20dp"
+            android:padding="15dp"
+            ></TextView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_gravity="center"
+            android:id="@+id/imagen_view_prod"
+
+            ></ImageView>
+        <TextView
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:id="@+id/descripcion_tv"
+            ></TextView>
+        <TextView
+
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Precio"></TextView>
+        <TextView
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/precio_tv"
+            android:layout_margin="10dp"></TextView>
+    </LinearLayout>
+
+</ScrollView>
 
 </LinearLayout>

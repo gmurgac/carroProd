@@ -11,5 +11,15 @@
         android:id="@+id/productos_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="@dimen/margen_boton_float"
+        android:background="@color/colorAccent"
+        android:src="@drawable/ic_baseline_add_24"
+        android:id="@+id/boton_crear_fb"
+
+        ></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 </LinearLayout>

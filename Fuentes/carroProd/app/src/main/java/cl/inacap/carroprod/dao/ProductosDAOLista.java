@@ -47,8 +47,8 @@ public class ProductosDAOLista implements ProductosDAO {
         p.setNombre("Galletas museo");
         p.setDescripcion("asdasdasdas");
         p.setPrecio(150);
-        p.setFoto("https://i.pinimg.com/originals/d4/0e/6e/d40e6e9a74a97cfde41024ac9db37115.jpg");
-
+        p.setFoto("https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png");
+        productos.add(p);
     }
 
     @Override

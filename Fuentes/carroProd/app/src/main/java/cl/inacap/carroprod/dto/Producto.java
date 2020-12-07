@@ -3,6 +3,16 @@ package cl.inacap.carroprod.dto;
 import java.io.Serializable;
 
 public class Producto implements Serializable {
+    private int idProducto;
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
     private String nombre;
     private String foto;
     private String descripcion;

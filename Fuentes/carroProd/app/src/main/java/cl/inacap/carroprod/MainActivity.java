@@ -10,23 +10,26 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import cl.inacap.carroprod.adapters.ProductosListAdapter;
 import cl.inacap.carroprod.dao.ProductosDAO;
 import cl.inacap.carroprod.dao.ProductosDAOLista;
+import cl.inacap.carroprod.dao.ProductosDAOSqLite;
 import cl.inacap.carroprod.dto.Producto;
 
 public class MainActivity extends AppCompatActivity {
     private ListView productosLv;
     private ProductosListAdapter adapter;
     private List<Producto> productos;
-    private ProductosDAO prodDAO = ProductosDAOLista.getInstance();
+    private ProductosDAO prodDAO = new ProductosDAOSqLite(this);
+    private FloatingActionButton agregarBtn;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        this.setSupportActionBar((Toolbar) findViewById(R.id.toolbat));
+    protected void onResume(){
+        super.onResume();
         this.productos = this.prodDAO.getAll();
         this.productosLv = findViewById(R.id.productos_lv);
         this.adapter = new ProductosListAdapter(this,R.layout.productos_list,this.productos);
@@ -45,8 +48,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        this.setSupportActionBar((Toolbar) findViewById(R.id.toolbat));
+        this.agregarBtn = findViewById(R.id.boton_crear_fb);
+        this.agregarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, CrearProductoActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 }
