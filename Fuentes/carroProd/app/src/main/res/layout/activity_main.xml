@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <include layout="@layout/toolbar"></include>
+    <include layout="@layout/toolbar"
+        android:id="@+id/idTolbar"></include>
     <ListView
         android:id="@+id/productos_lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idTolbar"
+        ></ListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/margen_boton_float"
         android:background="@color/colorAccent"
         android:src="@drawable/ic_baseline_add_24"
         android:id="@+id/boton_crear_fb"
+        app:elevation="1dp"
 
         ></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-</LinearLayout>
+</RelativeLayout>

@@ -32,26 +32,14 @@
             android:id="@+id/imagen_view_prod"
 
             ></ImageView>
-        <TextView
-            android:padding="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:id="@+id/descripcion_tv"
-            ></TextView>
-        <TextView
 
-            android:layout_margin="10dp"
-            android:padding="15dp"
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Precio"></TextView>
-        <TextView
-            android:padding="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/precio_tv"
-            android:layout_margin="10dp"></TextView>
+            android:id="@+id/btn_borrar"
+            android:text="ELIMINAR DE LA LISTA"
+            ></Button>
     </LinearLayout>
 
 </ScrollView>

@@ -22,6 +22,8 @@ public class ProductosDAOSqLite implements ProductosDAO {
 
     }
 
+
+
     @Override
     public Producto save(Producto p) {
         SQLiteDatabase writer = this.db.getWritableDatabase();
@@ -63,5 +65,17 @@ public class ProductosDAOSqLite implements ProductosDAO {
         return productos;
 
 
+    }
+
+    @Override
+    public Producto erase(Producto p) {
+        SQLiteDatabase writer = this.db.getWritableDatabase();
+        String sql = String.format("DELETE FROM productos " +
+                        "WHERE nombre='"+p.getNombre()+"'");
+        writer.execSQL(sql);
+        writer.close();
+
+
+        return null;
     }
 }

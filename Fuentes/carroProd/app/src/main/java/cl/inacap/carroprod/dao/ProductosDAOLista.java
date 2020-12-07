@@ -61,4 +61,9 @@ public class ProductosDAOLista implements ProductosDAO {
     public List<Producto> getAll() {
         return productos;
     }
+
+    @Override
+    public Producto erase(Producto p) {
+        return null;
+    }
 }

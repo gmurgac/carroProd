@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Producto producto = productos.get(i);
-                Toast.makeText(MainActivity.this,"se apreto"+producto.getNombre(),Toast.LENGTH_SHORT).show();
+
                 //1. Como lo mando al otro activity
                 //2 como hago que vaya al otro activity
                 //Inten recive desde donde viene(contexto), hacia donde va (contexto)
@@ -68,3 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
+
+//TODO: generar Lista de listados de mercaderia
+//TODO: seleccionar listado, comenzar compra y borrar productos de la memoria volatil, (DAO)
+//TODO: el listado persiste en la db
