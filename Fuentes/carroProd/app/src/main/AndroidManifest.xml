@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CrearProductoActivity"></activity>
+        <activity android:name=".VerListadoProductos"></activity>
+        <activity android:name=".CrearLista" />
+        <activity android:name=".ComenzarCompra" />
+        <activity android:name=".CrearProductoActivity" />
         <activity android:name=".ProductoViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,8 +1,10 @@
 package cl.inacap.carroprod;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -57,8 +59,27 @@ public class ProductoViewActivity extends AppCompatActivity {
         this.btnBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                prodDAO.erase(producto);
-                startActivity(new Intent(ProductoViewActivity.this,MainActivity.class));
+                AlertDialog dialogo = new AlertDialog
+                        .Builder(ProductoViewActivity.this)
+                        .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                prodDAO.erase(producto);
+                                onBackPressed();
+                            }
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setTitle("Confirmar")
+                        .setMessage("Seguro que deseas eliminar ?")
+                        .create();
+                dialogo.show();
+
+
             }
         });
 

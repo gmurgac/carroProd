@@ -8,4 +8,5 @@ public interface ProductosDAO {
     Producto save(Producto p);
     List<Producto> getAll();
     Producto erase(Producto p);
+    List<Producto> getAllByNombreLista(String string);
 }

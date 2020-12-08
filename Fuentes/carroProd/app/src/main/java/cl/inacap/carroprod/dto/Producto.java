@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Producto implements Serializable {
     private int idProducto;
 
+
     public int getIdProducto() {
         return idProducto;
     }
@@ -17,6 +18,15 @@ public class Producto implements Serializable {
     private String foto;
     private String descripcion;
     private int precio;
+    private String nombreLista;
+
+    public String getNombreLista() {
+        return nombreLista;
+    }
+
+    public void setNombreLista(String nombreLista) {
+        this.nombreLista = nombreLista;
+    }
 
     public String getNombre() {
         return nombre;

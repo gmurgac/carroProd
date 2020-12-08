@@ -28,8 +28,8 @@ public class ProductosDAOSqLite implements ProductosDAO {
     public Producto save(Producto p) {
         SQLiteDatabase writer = this.db.getWritableDatabase();
         String sql = String.format("INSERT INTO productos(" +
-                "precio,nombre,foto,descripcion) VALUES ('%d','%s','%s','%s')"
-                ,p.getPrecio(),p.getNombre(),p.getFoto(),p.getDescripcion());
+                "precio,nombre,foto,descripcion,nombreLista) VALUES ('%d','%s','%s','%s','%s')"
+                ,p.getPrecio(),p.getNombre(),p.getFoto(),p.getDescripcion(),p.getNombreLista());
                 writer.execSQL(sql);
         writer.close();
         return null;
@@ -57,6 +57,38 @@ public class ProductosDAOSqLite implements ProductosDAO {
                 }while(c.moveToNext());
             }
             reader.close();
+            }
+
+        }catch(Exception ex){
+            productos = null;
+        }
+        return productos;
+
+
+    }
+
+    @Override
+    public List<Producto> getAllByNombreLista(String nombreLista) {
+
+        SQLiteDatabase reader = this.db.getReadableDatabase();
+        List<Producto> productos = new ArrayList<>();
+        try{
+
+            if(reader != null){
+                Cursor c = reader.rawQuery("SELECT id,precio,nombre,foto" +
+                        ",descripcion FROM productos WHERE nombreLista='"+nombreLista+"'",null);
+                if(c.moveToFirst()){
+                    do{
+                        Producto p = new Producto();
+                        p.setIdProducto(c.getInt(0));
+                        p.setPrecio(c.getInt(1));
+                        p.setNombre(c.getString(2));
+                        p.setFoto(c.getString(3));
+                        p.setDescripcion(c.getString(4));
+                        productos.add(p);
+                    }while(c.moveToNext());
+                }
+                reader.close();
             }
 
         }catch(Exception ex){

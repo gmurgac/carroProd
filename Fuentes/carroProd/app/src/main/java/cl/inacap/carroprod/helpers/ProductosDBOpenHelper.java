@@ -12,8 +12,14 @@ public class ProductosDBOpenHelper extends SQLiteOpenHelper {
             "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "precio INTEGER," +
             "nombre TEXT," +
+            "nombreLista TEXT," +
             "foto TEXT," +
             "descripcion TEXT)";
+    private final String sqlCreate2 = "CREATE TABLE listas(" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            "nombre TEXT)";
+
+
     public ProductosDBOpenHelper(@Nullable Context context,
                                  @Nullable String name,
                                  @Nullable SQLiteDatabase.CursorFactory factory,
@@ -24,12 +30,9 @@ public class ProductosDBOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(this.sqlCreate);
-        sqLiteDatabase.execSQL(
-                "INSERT into productos(precio,nombre,foto,descripcion)" +
-                        " VALUES(1000"+
-                        ", 'CocaColaZero'"+
-                        ", 'https://jumbo.vteximg.com.br/arquivos/ids/336744/Principal-3936.jpg?v=637237316740900000'"+
-                        ",'Descripcion pulenta')");
+        sqLiteDatabase.execSQL(this.sqlCreate2);
+
+
 
     }
 
@@ -37,5 +40,7 @@ public class ProductosDBOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS productos");
         sqLiteDatabase.execSQL(sqlCreate);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS listas");
+        sqLiteDatabase.execSQL(sqlCreate2);
     }
 }
