@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import cl.inacap.carroprod.dao.ProductosDAO;
 import cl.inacap.carroprod.dao.ProductosDAOSqLite;
 import cl.inacap.carroprod.dto.Lista;
@@ -60,6 +64,10 @@ public class CrearProductoActivity extends AppCompatActivity {
                     p.setDescripcion("");
                     p.setPrecio(1);
                     p.setNombreLista(lista.getNombreLista());
+                    String fecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                    String hora = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+                    p.setFechaCreacion(fecha);
+                    p.setHoraCreacion(hora);
                     //Llamar al DAO
                     prodDAO.save(p);
                     //Enviar al activity principal

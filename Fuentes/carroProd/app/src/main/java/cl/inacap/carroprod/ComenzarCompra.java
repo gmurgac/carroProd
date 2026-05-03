@@ -70,7 +70,7 @@ public class ComenzarCompra extends AppCompatActivity {
             this.tituloToolbar = findViewById(R.id.titulo_toolbar_txt);
             this.tituloToolbar.setText("Comprando...");
             this.lvCompra = findViewById(R.id.productos_lv_compra);
-            this.adapter = new ProductosListAdapter(this,R.layout.productos_list,this.productos);
+            this.adapter = new ProductosListAdapter(this,R.layout.productos_list,this.productos, true);
             this.lvCompra.setAdapter(adapter);
         }
         this.lvCompra.setOnItemClickListener(new AdapterView.OnItemClickListener() {

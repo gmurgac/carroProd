@@ -14,11 +14,14 @@ public class ProductosDBOpenHelper extends SQLiteOpenHelper {
             "nombre TEXT," +
             "nombreLista TEXT," +
             "foto TEXT," +
-            "descripcion TEXT)";
+            "descripcion TEXT," +
+            "fecha TEXT," +
+            "hora TEXT)";
     private final String sqlCreate2 = "CREATE TABLE listas(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "nombre TEXT," +
-            "fecha DATE)";
+            "fecha DATE," +
+            "hora TEXT)";
 
 
     public ProductosDBOpenHelper(@Nullable Context context,

@@ -22,15 +22,19 @@ import cl.inacap.carroprod.dto.Producto;
 public class ProductosListAdapter extends ArrayAdapter<Producto> {
     private List<Producto> productos;
     private Activity activity;
-
-
+    private boolean soloNombre = false;
 
     public ProductosListAdapter(@NonNull Activity context, int resource, @NonNull List<Producto> objects) {
         super(context, resource, objects);
-    this.productos = objects;
-    this.activity = context;
+        this.productos = objects;
+        this.activity = context;
+    }
 
-
+    public ProductosListAdapter(@NonNull Activity context, int resource, @NonNull List<Producto> objects, boolean soloNombre) {
+        super(context, resource, objects);
+        this.productos = objects;
+        this.activity = context;
+        this.soloNombre = soloNombre;
     }
 
     @NonNull
@@ -40,13 +44,23 @@ public class ProductosListAdapter extends ArrayAdapter<Producto> {
         View fila = inflater.inflate(R.layout.productos_list,null,true);
         //Aqui cargar el contenido del layout:
         TextView nombreTv = fila.findViewById(R.id.nombre_producto_pl);
+        TextView fechaTv = fila.findViewById(R.id.fecha_producto_pl);
         ImageView imageProd = fila.findViewById(R.id.image_prod_pl);
+        
         Producto actual = productos.get(position);
         nombreTv.setText(actual.getNombre());
-        Picasso.get().load(actual.getFoto())
-                .resize(300,300)
-                .centerCrop()
-                .into(imageProd);
+        
+        if (soloNombre) {
+            fechaTv.setVisibility(View.GONE);
+            imageProd.setVisibility(View.GONE);
+        } else {
+            fechaTv.setText(actual.getFechaCreacion() + " " + actual.getHoraCreacion());
+            Picasso.get().load(actual.getFoto())
+                    .resize(300,300)
+                    .centerCrop()
+                    .into(imageProd);
+        }
+
         return fila;
     }
 }

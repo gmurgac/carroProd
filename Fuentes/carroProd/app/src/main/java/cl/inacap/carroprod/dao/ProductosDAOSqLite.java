@@ -18,7 +18,7 @@ public class ProductosDAOSqLite implements ProductosDAO {
         this.db = new ProductosDBOpenHelper(contexto,
                 "DBProductos",
                 null,
-                2);
+                3);
 
     }
 
@@ -28,8 +28,8 @@ public class ProductosDAOSqLite implements ProductosDAO {
     public Producto save(Producto p) {
         SQLiteDatabase writer = this.db.getWritableDatabase();
         String sql = String.format("INSERT INTO productos(" +
-                "precio,nombre,foto,descripcion,nombreLista) VALUES ('%d','%s','%s','%s','%s')"
-                ,p.getPrecio(),p.getNombre(),p.getFoto(),p.getDescripcion(),p.getNombreLista());
+                "precio,nombre,foto,descripcion,nombreLista,fecha,hora) VALUES ('%d','%s','%s','%s','%s','%s','%s')"
+                ,p.getPrecio(),p.getNombre(),p.getFoto(),p.getDescripcion(),p.getNombreLista(),p.getFechaCreacion(),p.getHoraCreacion());
                 writer.execSQL(sql);
         writer.close();
         return null;
@@ -44,7 +44,7 @@ public class ProductosDAOSqLite implements ProductosDAO {
 
             if(reader != null){
                 Cursor c = reader.rawQuery("SELECT id,precio,nombre,foto" +
-                        ",descripcion FROM productos",null);
+                        ",descripcion,fecha,hora FROM productos",null);
             if(c.moveToFirst()){
                 do{
                     Producto p = new Producto();
@@ -53,6 +53,8 @@ public class ProductosDAOSqLite implements ProductosDAO {
                     p.setNombre(c.getString(2));
                     p.setFoto(c.getString(3));
                     p.setDescripcion(c.getString(4));
+                    p.setFechaCreacion(c.getString(5));
+                    p.setHoraCreacion(c.getString(6));
                     productos.add(p);
                 }while(c.moveToNext());
             }
@@ -76,7 +78,7 @@ public class ProductosDAOSqLite implements ProductosDAO {
 
             if(reader != null){
                 Cursor c = reader.rawQuery("SELECT id,precio,nombre,foto" +
-                        ",descripcion FROM productos WHERE nombreLista='"+nombreLista+"'",null);
+                        ",descripcion,fecha,hora FROM productos WHERE nombreLista='"+nombreLista+"'",null);
                 if(c.moveToFirst()){
                     do{
                         Producto p = new Producto();
@@ -85,6 +87,8 @@ public class ProductosDAOSqLite implements ProductosDAO {
                         p.setNombre(c.getString(2));
                         p.setFoto(c.getString(3));
                         p.setDescripcion(c.getString(4));
+                        p.setFechaCreacion(c.getString(5));
+                        p.setHoraCreacion(c.getString(6));
                         productos.add(p);
                     }while(c.moveToNext());
                 }
@@ -103,11 +107,22 @@ public class ProductosDAOSqLite implements ProductosDAO {
     public Producto erase(Producto p) {
         SQLiteDatabase writer = this.db.getWritableDatabase();
         String sql = String.format("DELETE FROM productos " +
-                        "WHERE nombre='"+p.getNombre()+"'");
+                        "WHERE id=%d", p.getIdProducto());
         writer.execSQL(sql);
         writer.close();
 
 
         return null;
+    }
+
+    @Override
+    public void update(Producto p) {
+        SQLiteDatabase writer = this.db.getWritableDatabase();
+        String sql = String.format("UPDATE productos SET " +
+                        "nombre='%s', fecha='%s', hora='%s' " +
+                        "WHERE id=%d",
+                p.getNombre(), p.getFechaCreacion(), p.getHoraCreacion(), p.getIdProducto());
+        writer.execSQL(sql);
+        writer.close();
     }
 }

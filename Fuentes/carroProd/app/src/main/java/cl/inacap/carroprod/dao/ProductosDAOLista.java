@@ -54,4 +54,14 @@ public class ProductosDAOLista implements ProductosDAO {
     public List<Producto> getAllByNombreLista(String string) {
         return null;
     }
+
+    @Override
+    public void update(Producto p) {
+        for (int i = 0; i < productos.size(); i++) {
+            if (productos.get(i).getIdProducto() == p.getIdProducto()) {
+                productos.set(i, p);
+                break;
+            }
+        }
+    }
 }

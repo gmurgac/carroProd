@@ -46,7 +46,9 @@ public class CrearLista extends AppCompatActivity {
                     Lista l = new Lista();
                     l.setNombreLista(nombreListaEv.getText().toString().trim());
                     String fecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                    String hora = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
                     l.setFechaCreacion(fecha);
+                    l.setHoraCreacion(hora);
                     listasDAO.save(l);
                     startActivity(new Intent(CrearLista.this,MainActivity.class));
                 }else{

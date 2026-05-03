@@ -6,6 +6,7 @@ public class Lista implements Serializable {
 
     private String nombreLista;
     private String fechaCreacion;
+    private String horaCreacion;
 
     public String getNombreLista() {
         return nombreLista;
@@ -21,5 +22,13 @@ public class Lista implements Serializable {
 
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getHoraCreacion() {
+        return horaCreacion;
+    }
+
+    public void setHoraCreacion(String horaCreacion) {
+        this.horaCreacion = horaCreacion;
     }
 }

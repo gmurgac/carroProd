@@ -19,6 +19,24 @@ public class Producto implements Serializable {
     private String descripcion;
     private int precio;
     private String nombreLista;
+    private String fechaCreacion;
+    private String horaCreacion;
+
+    public String getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(String fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getHoraCreacion() {
+        return horaCreacion;
+    }
+
+    public void setHoraCreacion(String horaCreacion) {
+        this.horaCreacion = horaCreacion;
+    }
 
     public String getNombreLista() {
         return nombreLista;

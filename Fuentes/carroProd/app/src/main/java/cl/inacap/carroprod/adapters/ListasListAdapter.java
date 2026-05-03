@@ -44,7 +44,7 @@ public class ListasListAdapter extends ArrayAdapter<Lista> {
 
             Lista actual = listas.get(position);
             nombreTv.setText(actual.getNombreLista());
-            fechaTv.setText(actual.getFechaCreacion());
+            fechaTv.setText(actual.getFechaCreacion() + " " + actual.getHoraCreacion());
 
             return fila;
         }

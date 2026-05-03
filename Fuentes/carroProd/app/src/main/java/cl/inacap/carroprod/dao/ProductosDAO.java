@@ -9,4 +9,5 @@ public interface ProductosDAO {
     List<Producto> getAll();
     Producto erase(Producto p);
     List<Producto> getAllByNombreLista(String string);
+    void update(Producto p);
 }
