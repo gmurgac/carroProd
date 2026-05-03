@@ -40,9 +40,11 @@ public class ListasListAdapter extends ArrayAdapter<Lista> {
             View fila = inflater.inflate(R.layout.listas_list,null,true);
             //Aqui cargar el contenido del layout:
             TextView nombreTv = fila.findViewById(R.id.nombre_lista);
+            TextView fechaTv = fila.findViewById(R.id.fecha_lista);
 
             Lista actual = listas.get(position);
             nombreTv.setText(actual.getNombreLista());
+            fechaTv.setText(actual.getFechaCreacion());
 
             return fila;
         }

@@ -10,10 +10,19 @@
     <TextView
         android:textSize="@dimen/nombre_prod"
         android:id="@+id/nombre_lista"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_marginLeft="@dimen/margin_left_prod"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         ></TextView>
+
+    <TextView
+        android:id="@+id/fecha_lista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_gravity="center_vertical"
+        />
 
 </LinearLayout>

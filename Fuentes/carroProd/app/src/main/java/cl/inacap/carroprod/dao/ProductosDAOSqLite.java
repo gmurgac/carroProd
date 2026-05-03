@@ -18,7 +18,7 @@ public class ProductosDAOSqLite implements ProductosDAO {
         this.db = new ProductosDBOpenHelper(contexto,
                 "DBProductos",
                 null,
-                1);
+                2);
 
     }
 

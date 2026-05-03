@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,6 +27,8 @@ public class ComenzarCompra extends AppCompatActivity {
     private ProductosDAO prodDAO = new ProductosDAOSqLite(this);
     private ProductosListAdapter adapter;
     private List<Producto> productos;
+    private final Handler handler = new Handler();
+    private Runnable runnable;
 
 
     @Override
@@ -81,5 +84,22 @@ public class ComenzarCompra extends AppCompatActivity {
 
             }
         });
+        this.runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (productos != null && !productos.isEmpty()) {
+                    productos.remove(0);
+                    adapter.notifyDataSetChanged();
+                }
+                handler.postDelayed(this, 5000);
+            }
+        };
+        handler.postDelayed(runnable, 5000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
     }
 }

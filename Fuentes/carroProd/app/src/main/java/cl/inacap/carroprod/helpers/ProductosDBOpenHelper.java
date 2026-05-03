@@ -17,7 +17,8 @@ public class ProductosDBOpenHelper extends SQLiteOpenHelper {
             "descripcion TEXT)";
     private final String sqlCreate2 = "CREATE TABLE listas(" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "nombre TEXT)";
+            "nombre TEXT," +
+            "fecha DATE)";
 
 
     public ProductosDBOpenHelper(@Nullable Context context,

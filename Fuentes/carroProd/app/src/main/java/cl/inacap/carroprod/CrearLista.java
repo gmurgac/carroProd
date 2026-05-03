@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import cl.inacap.carroprod.dao.ListasDAO;
 import cl.inacap.carroprod.dao.ListasDAOSqLite;
 import cl.inacap.carroprod.dao.ProductosDAO;
@@ -37,9 +41,12 @@ public class CrearLista extends AppCompatActivity {
         this.agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO: Agregar campos fecha creacion, mostrar al lado del nombre en vista de listados
                 if(!nombreListaEv.getText().toString().trim().isEmpty()){
                     Lista l = new Lista();
                     l.setNombreLista(nombreListaEv.getText().toString().trim());
+                    String fecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+                    l.setFechaCreacion(fecha);
                     listasDAO.save(l);
                     startActivity(new Intent(CrearLista.this,MainActivity.class));
                 }else{

@@ -21,15 +21,15 @@ public class ListasDAOSqLite implements ListasDAO {
         this.db = new ProductosDBOpenHelper(contexto,
                 "DBProductos",
                 null,
-                1);
+                2);
 
     }
     @Override
     public Lista save(Lista lista) {
         SQLiteDatabase writer = this.db.getWritableDatabase();
         String sql = String.format("INSERT INTO listas(" +
-                        "nombre) VALUES ('%s')"
-                ,lista.getNombreLista());
+                        "nombre, fecha) VALUES ('%s', '%s')"
+                ,lista.getNombreLista(), lista.getFechaCreacion());
         writer.execSQL(sql);
         writer.close();
 
@@ -44,11 +44,12 @@ public class ListasDAOSqLite implements ListasDAO {
         try{
 
             if(reader != null){
-                Cursor c = reader.rawQuery("SELECT nombre FROM listas",null);
+                Cursor c = reader.rawQuery("SELECT nombre, fecha FROM listas",null);
                 if(c.moveToFirst()){
                     do{
                         Lista p = new Lista();
                         p.setNombreLista(c.getString(0));
+                        p.setFechaCreacion(c.getString(1));
 
                         listas.add(p);
                     }while(c.moveToNext());
