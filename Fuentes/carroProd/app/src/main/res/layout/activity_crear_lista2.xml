@@ -13,12 +13,36 @@
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/titulo_lista_tv"
         android:text="Nombre de la Lista"></TextView>
     <EditText
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nombre_lista_edit_txt"></EditText>
+
+    <TextView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Creación"></TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fecha_lista_edit_txt"
+        android:hint="dd/MM/yyyy"></EditText>
+
+    <TextView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora de Creación"></TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hora_lista_edit_txt"
+        android:hint="HH:mm"></EditText>
 
     <Button
         android:layout_marginTop="15dp"

@@ -54,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        this.listasLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Lista lista = listas.get(i);
+                Intent intent = new Intent(MainActivity.this, CrearLista.class);
+                intent.putExtra("lista", lista);
+                startActivity(intent);
+                return true;
+            }
+        });
     }
 
 

@@ -9,4 +9,5 @@ public interface ListasDAO {
     Lista save(Lista lista);
     List<Lista> getAll();
     Lista erase(Lista lista);
+    void update(Lista l);
 }
