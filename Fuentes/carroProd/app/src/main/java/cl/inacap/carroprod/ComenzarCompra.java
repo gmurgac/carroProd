@@ -29,6 +29,7 @@ public class ComenzarCompra extends AppCompatActivity {
     private List<Producto> productos;
     private final Handler handler = new Handler();
     private Runnable runnable;
+    private int tiempoSegundos = 0;
 
 
     @Override
@@ -64,6 +65,7 @@ public class ComenzarCompra extends AppCompatActivity {
         if(getIntent().getExtras() != null){
             //El pasaje de avion venia con yapa,,,,, me enviaron algo en el intent
             this.lista = (Lista) getIntent().getSerializableExtra("lista");
+            this.tiempoSegundos = getIntent().getIntExtra("tiempo", 0);
             this.productos = prodDAO.getAllByNombreLista(this.lista.getNombreLista());
 
             this.lvCompra = findViewById(R.id.productos_lv_compra);
@@ -84,17 +86,20 @@ public class ComenzarCompra extends AppCompatActivity {
 
             }
         });
-        this.runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (productos != null && !productos.isEmpty()) {
-                    productos.remove(0);
-                    adapter.notifyDataSetChanged();
+
+        if (this.tiempoSegundos > 0) {
+            this.runnable = new Runnable() {
+                @Override
+                public void run() {
+                    if (productos != null && !productos.isEmpty()) {
+                        productos.remove(0);
+                        adapter.notifyDataSetChanged();
+                    }
+                    handler.postDelayed(this, tiempoSegundos * 1000);
                 }
-                handler.postDelayed(this, 5000);
-            }
-        };
-        handler.postDelayed(runnable, 5000);
+            };
+            handler.postDelayed(runnable, tiempoSegundos * 1000);
+        }
     }
 
     @Override

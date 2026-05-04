@@ -9,8 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.view.LayoutInflater;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -106,10 +110,43 @@ public class VerListadoProductos extends AppCompatActivity {
         this.comenzarCompraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Preguntar por el tiempo
+                View dialogView = LayoutInflater.from(VerListadoProductos.this).inflate(R.layout.dialog_tiempo_compra, null);
+                final SeekBar seekBar = dialogView.findViewById(R.id.seekBar_tiempo);
+                final TextView tiempoTv = dialogView.findViewById(R.id.tv_tiempo_valor);
 
-                Intent i = new Intent(VerListadoProductos.this, ComenzarCompra.class);
-                i.putExtra("lista", lista);
-                startActivity(i);
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        if (progress == 0) {
+                            tiempoTv.setText("Manual (Sin tiempo)");
+                        } else {
+                            tiempoTv.setText(progress + " segundos");
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {}
+                });
+
+                new AlertDialog.Builder(VerListadoProductos.this)
+                        .setTitle("Configurar tiempo de compra")
+                        .setView(dialogView)
+                        .setPositiveButton("Comenzar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int tiempo = seekBar.getProgress();
+                                Intent i = new Intent(VerListadoProductos.this, ComenzarCompra.class);
+                                i.putExtra("lista", lista);
+                                i.putExtra("tiempo", tiempo); // 0 significa manual
+                                startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .show();
             }
         });
         this.agregarBtn = findViewById(R.id.boton_crear_fb);
